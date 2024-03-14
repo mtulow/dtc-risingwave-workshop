@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import psycopg2
 from flask_cors import CORS
 
@@ -36,6 +36,11 @@ def get_longest_trips():
     query = 'SELECT * FROM longest_trip_1_min'
     result = run_query(query)
     return jsonify(result)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
