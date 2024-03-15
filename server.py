@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 
 from flask import Flask, jsonify, render_template
+import os
 import psycopg2
 from flask_cors import CORS
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
 
+# Read the .env file
+load_dotenv()
 # Replace the following with your PostgreSQL database connection details
 db_connection_params = {
-    'host': 'localhost',
-    'database': 'dev',
-    'user': 'root',
-    'port': 4566,
+    'host': os.environ.get('PGHOST','localhost'),
+    'database': os.environ.get('PGDATABASE','dev'),
+    'user': os.environ.get('PGUSER','root'),
+    'port': os.environ.get('PGPORT',4566),
 }
 
 def run_query(query):
@@ -34,6 +38,20 @@ def get_busiest_zones():
 def get_longest_trips():
     # Replace the following with your SQL query for longest trips
     query = 'SELECT * FROM longest_trip_1_min'
+    result = run_query(query)
+    return jsonify(result)
+
+@app.route('/get_trip_minutes', methods=['GET'])
+def get_trip_minutes():
+    # Replace the following with your SQL query for trip times
+    query = 'SELECT * FROM trip_minutes'
+    result = run_query(query)
+    return jsonify(result)
+
+@app.route('/get_trip_seconds', methods=['GET'])
+def get_trip_seconds():
+    # Replace the following with your SQL query for trip times
+    query = 'SELECT * FROM trip_seconds'
     result = run_query(query)
     return jsonify(result)
 

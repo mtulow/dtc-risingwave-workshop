@@ -14,6 +14,17 @@ stream-kafka() {
 }
 
 # TODO: Command to create ALL ddls.
+
+# Load all materialized views into database
+load-views() {
+        psql -f risingwave-sql/views/all.sql
+}
+
+# Load all NYC taxi trip data
+load-data() {
+        psql -f risingwave-sql/table/trip_data.sql
+}
+
 # TODO: Command + script to send kafka updates.
 
 # Starts the risingwave cluster
@@ -42,3 +53,5 @@ clickhouse-client() {
 clickhouse-client-term() {
   docker exec -it clickhouse clickhouse-client
 }
+
+
