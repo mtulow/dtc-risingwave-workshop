@@ -25,6 +25,7 @@ sleep 5
 # Check that you have 100K records in the trip_data table
 # You may rerun it if the count is not 100K
 psql -c "SELECT COUNT(*) FROM trip_data"
+
 ```
 
 ## Question 0
