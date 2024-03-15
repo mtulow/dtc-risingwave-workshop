@@ -1,5 +1,6 @@
 activate/
 .venv/
+.env
 dashboards/
 grafana*
 prometheus*
