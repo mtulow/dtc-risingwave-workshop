@@ -6,6 +6,8 @@ In order to get a static set of results, we will use historical data from the da
 
 Run the following commands:
 ```bash
+# Load the environment
+source .venv/bin/activate
 # Load the cluster op commands.
 source commands.sh
 # First, reset the cluster:
@@ -23,6 +25,7 @@ sleep 5
 # Check that you have 100K records in the trip_data table
 # You may rerun it if the count is not 100K
 psql -c "SELECT COUNT(*) FROM trip_data"
+
 ```
 
 ## Question 0
